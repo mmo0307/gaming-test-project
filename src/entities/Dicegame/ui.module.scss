@@ -1,0 +1,43 @@
+@import "@styles/custom";
+
+.selected-value-box {
+  @include size(320px, 200px);
+
+  @extend %flex-center;
+
+  margin: 113px auto 0;
+
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.radio-group {
+  justify-content: center;
+
+  gap: 16px;
+
+  margin-top: 16px;
+}
+
+.slider-block {
+
+  display: block;
+
+  width: 320px;
+  margin: 32px auto 16px;
+}
+
+.button {
+  display: block;
+
+  margin: 16px auto;
+}
+
+.table {
+
+  width: 600px;
+  box-shadow: none;
+
+  &-cell-guess {
+    text-transform: capitalize;
+  }
+}

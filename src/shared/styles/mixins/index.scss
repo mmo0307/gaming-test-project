@@ -1,0 +1,141 @@
+@mixin size($width, $height: $width) {
+  width: $width;
+
+  height: $height;
+}
+
+@mixin max-size($width, $height: $width) {
+  max-width: $width;
+
+  max-height: $height;
+}
+
+@mixin fixed-layout($columns, $width, $h-gap, $v-gap) {
+  display: grid;
+
+  column-gap: $h-gap;
+
+  grid-template-columns: repeat($columns, $width);
+
+  row-gap: $v-gap;
+}
+
+@mixin flex(
+  $justifyContent: flex-start,
+  $alignItems: center,
+  $flexDirection: row
+) {
+  display: flex;
+
+  flex-direction: $flexDirection;
+
+  justify-content: $justifyContent;
+
+  align-items: $alignItems;
+}
+
+@mixin font-size($font-size, $line-height: normal, $letter-spacing: normal) {
+  font-size: $font-size * 1px;
+  // font-size: $font-size * 0.1rem;
+  // example using rem values and 62.5% font-size so 1rem = 10px
+
+  @if $line-height==normal {
+    line-height: normal;
+  } @else {
+    line-height: $line-height / $font-size;
+  }
+
+  @if $letter-spacing==normal {
+    letter-spacing: normal;
+  } @else {
+    letter-spacing: #{$letter-spacing / $font-size}em;
+  }
+}
+
+@mixin children() {
+  & > * {
+    @content;
+  }
+}
+
+@mixin first() {
+  & > *:first-child {
+    @content;
+  }
+}
+
+@mixin last() {
+  & > *:last-child {
+    @content;
+  }
+}
+
+@mixin fade($type) {
+  @if $type== "hide" {
+    visibility: hidden;
+
+    opacity: 0;
+
+    transition: visibility 1s, opacity 1s;
+  } @else if $type== "show" {
+    visibility: visible;
+
+    opacity: 1;
+
+    transition: visibility 1s, opacity 1s;
+  }
+}
+
+@mixin center-block {
+  display: block;
+
+  margin-left: auto;
+
+  margin-right: auto;
+}
+
+@mixin text-truncate {
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+}
+
+@mixin input-placeholder {
+  &.placeholder { @content; }
+  &::placeholder{ @content; }
+  &:-moz-placeholder { @content; }
+  &::-moz-placeholder { @content; }
+  &:-ms-input-placeholder { @content; }
+  &::-webkit-input-placeholder { @content; }
+}
+
+@mixin absolute-center() {
+  position: absolute;
+
+  top: 50%;
+
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+}
+
+@mixin fixed-center() {
+  position: fixed;
+
+  top: 50%;
+
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+}
+
+%flex-center {
+  @include flex(center, center);
+}
+
+.ft-robot,
+%ft-robot {
+  font-family: var(--font-robot), sans-serif;
+}
